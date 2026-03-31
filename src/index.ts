@@ -8,7 +8,7 @@
  * ElizaOS Plugin Docs: https://elizaos.github.io/eliza/docs/core/plugins
  */
 
-import { type Plugin } from "@elizaos/core";
+import { type Action, type Memory, type Plugin } from "@elizaos/core";
 
 const BRIEF_KEYWORDS = [
   "daily brief",
@@ -20,7 +20,7 @@ const BRIEF_KEYWORDS = [
   "rank my day",
 ];
 
-const operatorBriefAction = {
+const operatorBriefAction: Action = {
   name: "GENERATE_OPERATOR_BRIEF",
   description:
     "Trigger when the user asks for a daily brief, ranked priorities, or a concise action board.",
@@ -30,24 +30,34 @@ const operatorBriefAction = {
     "WHAT_MATTERS_TODAY",
     "PRIORITIZE_MY_DAY",
   ],
-  validate: async (_runtime: unknown, message: { content: { text: string } }) => {
-    const text = message.content.text.toLowerCase();
+  validate: async (_runtime: unknown, message: Memory) => {
+    const text = message.content.text?.toLowerCase() ?? "";
     return BRIEF_KEYWORDS.some((keyword) => text.includes(keyword));
   },
-  handler: async (_runtime: unknown, message: { content: { text: string } }) => {
-    console.log("OperatorDesk brief request:", message.content.text);
-    return true;
+  handler: async (_runtime: unknown, message: Memory) => {
+    const prompt = message.content.text ?? "";
+
+    console.log("OperatorDesk brief request:", prompt);
+
+    return {
+      success: true,
+      text: "Here is your operator brief: top priorities, open risks, and the clearest next actions based on what you shared.",
+      data: {
+        actionName: "GENERATE_OPERATOR_BRIEF",
+        prompt,
+      },
+    };
   },
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user}}",
         content: {
           text: "Give me a morning brief for my watchlist and top tasks.",
         },
       },
       {
-        user: "OperatorDesk",
+        name: "{{agent}}",
         content: {
           text: "Here is your operator brief with the top priorities, open risks, and suggested next actions.",
         },

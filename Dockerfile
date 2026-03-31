@@ -8,13 +8,20 @@ RUN apt-get update && apt-get install -y \
   make \
   g++ \
   git \
+  curl \
+  unzip \
   && rm -rf /var/lib/apt/lists/*
 
 # Disable telemetry
 ENV ELIZAOS_TELEMETRY_DISABLED=true
 ENV DO_NOT_TRACK=1
+ENV BUN_INSTALL=/root/.bun
+ENV PATH="/root/.bun/bin:${PATH}"
 
 WORKDIR /app
+
+# Install Bun for the ElizaOS runtime and pnpm for dependency installation
+RUN curl -fsSL https://bun.sh/install | bash
 
 # Install pnpm
 RUN npm install -g pnpm
