@@ -11,7 +11,7 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 ## Submission Fields To Fill In
 
 - Public GitHub fork: `https://github.com/frederik-maker/nosana-operator-desk`
-- Live Nosana deployment URL: `[PASTE LIVE URL]`
+- Live Nosana deployment URL: `https://3b9zEv5axy4xuzHe9KXZMpfpfvvZAj53DBQt6GWpxpys.node.k8s.prd.nos.ci` (currently returns `503` until credits are added and the deployment is re-started)
 - Video demo link: `[PASTE VIDEO URL]`
 
 ## Current Status
