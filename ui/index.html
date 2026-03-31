@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operator Desk</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">PERSONAL AI ON NOSANA</p>
+        <div class="hero-row">
+          <div>
+            <h1>Operator Desk</h1>
+            <p class="hero-copy">
+              A personal AI chief-of-staff for builders and traders. It turns scattered context
+              into a ranked daily board.
+            </p>
+          </div>
+          <div class="mode-switch">
+            <button class="mode active" data-mode="founder">Founder</button>
+            <button class="mode" data-mode="research">Research</button>
+            <button class="mode" data-mode="trader">Trader</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card card-brief">
+          <div class="card-head">
+            <h2>Morning Brief</h2>
+            <span id="briefStamp">Updated 07:10</span>
+          </div>
+          <ol id="priorities" class="priority-list"></ol>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Open Risks</h2>
+            <span>Watch closely</span>
+          </div>
+          <ul id="risks" class="pill-list"></ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Watchlist</h2>
+            <span>What moved</span>
+          </div>
+          <ul id="watchlist" class="watchlist"></ul>
+        </article>
+
+        <article class="card card-actions">
+          <div class="card-head">
+            <h2>Next Actions</h2>
+            <span>Small steps first</span>
+          </div>
+          <ul id="actions" class="action-list"></ul>
+        </article>
+      </section>
+
+      <section class="chat-shell">
+        <div class="card chat-card">
+          <div class="card-head">
+            <h2>Ask Operator Desk</h2>
+            <span>Custom UI mockup</span>
+          </div>
+          <div class="message user">
+            Give me a morning brief for my watchlist and top tasks.
+          </div>
+          <div id="response" class="message agent"></div>
+          <form id="chatForm" class="chat-form">
+            <input
+              id="promptInput"
+              type="text"
+              value="What changed that should alter my priorities today?"
+              aria-label="Prompt"
+            />
+            <button type="submit">Generate</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
