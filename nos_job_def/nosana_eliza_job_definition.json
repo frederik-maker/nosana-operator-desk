@@ -22,5 +22,6 @@
       "type": "container/run"
     }
   ],
+  "type": "container",
   "version": "0.1"
 }

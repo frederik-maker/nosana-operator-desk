@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "elizaos start --character ./characters/agent.character.json",
-    "dev": "elizaos dev --character ./characters/agent.character.json"
+    "dev": "elizaos dev --character ./characters/agent.character.json",
+    "deploy:nosana": "node ./scripts/deploy-via-api.mjs"
   },
   "dependencies": {
     "@elizaos/core": "^1.0.0",

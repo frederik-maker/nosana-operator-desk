@@ -321,6 +321,30 @@ nosana job logs <job-id>
 - `--market` — Which GPU market to use (nvidia-3090, nvidia-rtx-4090, etc.)
 - `--timeout` — Maximum job runtime in minutes
 
+### Step 4B: Deploy via Nosana API Helper Script
+
+This repo now includes a repeatable API deployment script that reads your local job definition, creates a deployment on the premium 3060 market by default, starts it, and prints the latest Nosana event if startup fails.
+
+```bash
+export NOSANA_API_KEY=nos_your_key_here
+npm run deploy:nosana
+```
+
+Optional flags:
+
+```bash
+npm run deploy:nosana -- \
+  --name "Operator Desk Premium" \
+  --market 7AtiXMSH6R1jjBxrcYjehCkkSF7zvYWte63gwEDBcGHq \
+  --timeout 60 \
+  --replicas 1
+```
+
+Notes:
+- API-key deployments must use a premium market. Community markets return a job-list error.
+- The current job definition requires a top-level `"type": "container"` field. That field is already included in `nos_job_def/nosana_eliza_job_definition.json`.
+- If the account has no balance, Nosana returns an event like `Insufficient credits. Available: $0.000, Required: $0.048`.
+
 ### Step 5: Verify Your Deployment
 
 Once your job is running on Nosana:
