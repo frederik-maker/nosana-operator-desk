@@ -20,6 +20,7 @@ const jobPath =
 const shouldStart = args.start !== "false";
 const pollAttempts = Number(args.pollAttempts || process.env.NOSANA_POLL_ATTEMPTS || 12);
 const pollIntervalMs = Number(args.pollIntervalMs || process.env.NOSANA_POLL_INTERVAL_MS || 5000);
+const startAttempts = Number(args.startAttempts || process.env.NOSANA_START_ATTEMPTS || 3);
 
 const jobDefinition = JSON.parse(await readFile(jobPath, "utf8"));
 
@@ -42,9 +43,7 @@ if (!shouldStart) {
   process.exit(0);
 }
 
-await apiFetch(`/deployments/${created.id}/start`, {
-  method: "POST",
-});
+await startDeployment(created.id, startAttempts);
 
 console.log("Start requested. Polling deployment status...");
 
@@ -121,4 +120,27 @@ async function apiFetch(path, init = {}) {
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function startDeployment(deploymentId, attempts) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      await apiFetch(`/deployments/${deploymentId}/start`, {
+        method: "POST",
+      });
+      return;
+    } catch (error) {
+      lastError = error;
+      console.warn(
+        `Start attempt ${attempt}/${attempts} failed: ${error.message}`
+      );
+      if (attempt < attempts) {
+        await sleep(2000);
+      }
+    }
+  }
+
+  throw lastError;
 }

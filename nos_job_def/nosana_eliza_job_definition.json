@@ -3,7 +3,7 @@
     {
       "id": "agent",
       "args": {
-        "image": "frederikbus/nosana-operator-desk:latest",
+        "image": "frederikbus/nosana-operator-desk:amd64",
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",

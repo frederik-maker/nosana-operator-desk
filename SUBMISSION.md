@@ -11,20 +11,23 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 ## Submission Fields To Fill In
 
 - Public GitHub fork: `https://github.com/frederik-maker/nosana-operator-desk`
-- Live Nosana deployment URL: `https://3b9zEv5axy4xuzHe9KXZMpfpfvvZAj53DBQt6GWpxpys.node.k8s.prd.nos.ci` (currently returns `503` until credits are added and the deployment is re-started)
+- Live Nosana deployment URL: `https://LXzwNDzDA6vdBN1aB9D6SGn3FK3q9wi18seHwWbXBVm7.node.k8s.prd.nos.ci`
 - Video demo link: `[PASTE VIDEO URL]`
 
 ## Current Status
 
-- Docker image pushed: `frederikbus/nosana-operator-desk:latest`
-- Latest image digest: `sha256:99db2bf5ad6d7fa8fdf49208b057c3267b7be3b7d32b4996ca290470bd315b72`
+- Docker image pushed: `frederikbus/nosana-operator-desk:amd64`
+- Latest live image digest: `sha256:35c01535c7f2dd19db6b3e7a43090ac19726a8a49aed14c2609c330afa1fc8da`
 - Local smoke test passed on April 1, 2026: the container stayed up and served the ElizaOS client on `http://127.0.0.1:3000`
 - Job definition fix applied on April 1, 2026: added the required top-level `"type": "container"` field to `nos_job_def/nosana_eliza_job_definition.json`
-- Community market test deployment created and started, then failed with: `Credit-based jobs are only allowed on premium markets. Community and other market types are not supported for credit payments.`
-- Premium market deployment created successfully:
-  - Deployment ID: `7HfQGmwmPTvo9HjH4T2qCXw4cM2vGPcTBcWmTCSxcqfh`
-  - Endpoint URL: `https://3b9zEv5axy4xuzHe9KXZMpfpfvvZAj53DBQt6GWpxpys.node.k8s.prd.nos.ci`
-- Current blocker: the provided Nosana API key is valid, but the premium deployment stops with `Insufficient credits. Available: $0.000, Required: $0.048`
+- Architecture fix applied on April 1, 2026: published a dedicated `amd64` image tag after Nosana nodes rejected the original arm64-only image with `image not known`
+- Premium deployment now live on April 1, 2026:
+  - Deployment ID: `9T9DhDCn5sNomB82fmiu2ckKrSftxVffaivVYVn3eAKP`
+  - Job ID: `7qAzaMVbxGtMAPtbNuRE7UvcB8qN5drknajXENAgGmyR`
+  - Endpoint URL: `https://LXzwNDzDA6vdBN1aB9D6SGn3FK3q9wi18seHwWbXBVm7.node.k8s.prd.nos.ci`
+  - Current deployment status: `RUNNING`
+  - Current public app shell response: `HTTP/2 200`
+- Remaining human-only blockers: record the sub-60-second demo, publish the social post in `SOCIAL_POST.md`, and star the required repos before final Superteam submission
 
 ## Required Pre-Submit Checklist
 
@@ -32,7 +35,7 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 - Push the repo to a public GitHub fork.
 - Build and push the Docker image.
 - Update the Docker image reference in `nos_job_def/nosana_eliza_job_definition.json`.
-- Claim or add Nosana credits, then re-run `npm run deploy:nosana`.
-- Deploy the container to Nosana until the endpoint is `RUNNING`.
+- Claim or add Nosana credits, then re-run `npm run deploy:nosana` if you need to redeploy.
+- Confirm the live endpoint still loads before recording the demo.
 - Record a sub-60-second demo.
 - Publish the social post in `SOCIAL_POST.md`.

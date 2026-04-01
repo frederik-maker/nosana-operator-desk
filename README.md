@@ -227,10 +227,10 @@ Your agent needs to be containerized and available on a public registry (Docker 
 
 ```bash
 # Build your Docker image
-docker build -t frederikbus/nosana-operator-desk:latest .
+docker build -t frederikbus/nosana-operator-desk:amd64 .
 
 # Test it locally first (recommended)
-docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:latest
+docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:amd64
 
 # Visit http://localhost:3000 to verify it works
 
@@ -238,10 +238,10 @@ docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:latest
 docker login
 
 # Push to Docker Hub (make it public)
-docker push frederikbus/nosana-operator-desk:latest
+docker push frederikbus/nosana-operator-desk:amd64
 ```
 
-> **Tip:** The current image name is `frederikbus/nosana-operator-desk:latest`. Make sure that Docker Hub repository is **public** so Nosana nodes can pull it.
+> **Tip:** The current image name is `frederikbus/nosana-operator-desk:amd64`. Make sure that Docker Hub repository is **public** so Nosana nodes can pull it.
 
 ### Step 2: Configure Your Job Definition
 
@@ -259,7 +259,7 @@ Edit `nos_job_def/nosana_eliza_job_definition.json` and update the Docker image 
       "type": "container/run",
       "id": "eliza-agent",
       "args": {
-        "image": "frederikbus/nosana-operator-desk:latest",
+        "image": "frederikbus/nosana-operator-desk:amd64",
         "ports": ["3000:3000"],
         "env": {
           "OPENAI_API_KEY": "nosana",
