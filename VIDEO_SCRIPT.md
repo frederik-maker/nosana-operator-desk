@@ -1,33 +1,19 @@
-# 60-Second Demo Script
+# Voiceover Script
 
-## Fastest Path
+## Final Read
 
-- Run `cd /Users/frederikbussler/competition-submissions/nosana-operator-desk/demo-tools && npm run record`
-- Upload `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
-- Use the screenshots in `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/screenshots` as the submission stills or fallback proof
+Operator Desk is a personal AI chief of staff for solo operators.
 
-## Voiceover Outline
+The problem it tries to solve is pretty simple: most people do not need another generic chatbot, they need something that can take a messy mix of watchlists, research notes, and open tasks and turn it into a clear ranked brief.
 
-0-10s
+Here I'm asking for a quick market update, and the agent responds with concise priorities and risk framing.
 
-- Open the Operator Desk dashboard and say: "This is Operator Desk, a personal AI chief-of-staff running on Nosana."
+It's built with ElizaOS and deployed live on Nosana, so this isn't a local mockup. It's running on decentralized infrastructure with a public deployment anyone can open.
 
-10-20s
+The goal is to make personal AI less theatrical and more genuinely useful.
 
-- Show the brief cards: top priorities, open risks, and watchlist changes.
+## Rendered Assets
 
-20-35s
-
-- Ask the agent for a morning brief using a short prompt like:
-- "Give me a morning brief for my watchlist and top tasks."
-
-35-50s
-
-- Show the response structure:
-- ranked priorities
-- short risk section
-- suggested next actions
-
-50-60s
-
-- Close with: "The point of Operator Desk is not another generic chat app. It is a personal AI layer that helps you decide what to do next, running on decentralized infrastructure."
+- Voiceover MP3: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-voiceover-frank.mp3`
+- Narrated video: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo-narrated-frank.mp4`
+- Silent fallback video: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`

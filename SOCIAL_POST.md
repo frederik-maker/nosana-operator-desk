@@ -1,11 +1,16 @@
 # Social Post
 
-I built `Operator Desk` for the Nosana x ElizaOS challenge: a personal AI chief-of-staff that turns notes, watchlists, and open tasks into a ranked daily action board.
+Most "personal AI" products still feel like chat UIs looking for a real job.
 
-It runs on ElizaOS, uses the Nosana-hosted Qwen3.5 model, and is designed around one question:
+I wanted something closer to an operator's morning desk.
 
-"What matters today?"
+`Operator Desk` takes a messy mix of watchlists, research notes, and open tasks, then compresses it into a ranked brief: what matters now, where the risk is, and what to do next.
 
-The goal was to make decentralized personal AI useful immediately, not just conversational.
+Built with ElizaOS, deployed live on Nosana.
 
-#NosanaAgentChallenge @nosana_ai
+Live app: https://51AXd67DY8evrGJTS8PjQnPWFd8PUpbP4y2rtEQeGpqM.node.k8s.prd.nos.ci
+Repo: https://github.com/frederik-maker/nosana-operator-desk
+
+I’d post this with the demo video attached. Tags are enough; hashtags are optional.
+
+@nosana_ai @elizaOS
