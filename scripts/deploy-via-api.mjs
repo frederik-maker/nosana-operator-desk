@@ -18,6 +18,17 @@ const market =
 const timeout = Number(args.timeout || process.env.NOSANA_TIMEOUT || 2880);
 const replicas = Number(args.replicas || process.env.NOSANA_REPLICAS || 1);
 const strategy = args.strategy || process.env.NOSANA_STRATEGY || "INFINITE";
+const openAiApiKey = args.openaiApiKey || process.env.OPENAI_API_KEY;
+const openAiBaseUrl =
+  args.openaiBaseUrl ||
+  args.openaiApiUrl ||
+  process.env.OPENAI_BASE_URL ||
+  process.env.OPENAI_API_URL;
+const modelName =
+  args.modelName ||
+  process.env.OPENAI_LARGE_MODEL ||
+  process.env.OPENAI_SMALL_MODEL ||
+  process.env.MODEL_NAME;
 const jobPath =
   args.job || process.env.NOSANA_JOB_DEFINITION || "./nos_job_def/nosana_eliza_job_definition.json";
 const shouldStart = args.start !== "false";
@@ -26,6 +37,24 @@ const pollIntervalMs = Number(args.pollIntervalMs || process.env.NOSANA_POLL_INT
 const startAttempts = Number(args.startAttempts || process.env.NOSANA_START_ATTEMPTS || 3);
 
 const jobDefinition = JSON.parse(await readFile(jobPath, "utf8"));
+const containerEnv = jobDefinition.ops?.[0]?.args?.env;
+
+if (containerEnv) {
+  if (openAiApiKey) {
+    containerEnv.OPENAI_API_KEY = openAiApiKey;
+  }
+
+  if (openAiBaseUrl) {
+    containerEnv.OPENAI_BASE_URL = openAiBaseUrl;
+    delete containerEnv.OPENAI_API_URL;
+  }
+
+  if (modelName) {
+    containerEnv.OPENAI_SMALL_MODEL = modelName;
+    containerEnv.OPENAI_LARGE_MODEL = modelName;
+    containerEnv.MODEL_NAME = modelName;
+  }
+}
 
 const created = await apiFetch("/deployments/create", {
   method: "POST",

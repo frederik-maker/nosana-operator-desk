@@ -122,8 +122,9 @@ Nosana provides a hosted **Qwen3.5-27B-AWQ-4bit** endpoint for challenge partici
 
 ```env
 OPENAI_API_KEY=nosana
-OPENAI_API_URL=https://6vq2bcqphcansrs9b88ztxfs88oqy7etah2ugudytv2x.node.k8s.prd.nos.ci/v1
-MODEL_NAME=Qwen3.5-27B-AWQ-4bit
+OPENAI_BASE_URL=https://6vq2bcqphcansrs9b88ztxfs88oqy7etah2ugudytv2x.node.k8s.prd.nos.ci/v1
+OPENAI_SMALL_MODEL=Qwen3.5-27B-AWQ-4bit
+OPENAI_LARGE_MODEL=Qwen3.5-27B-AWQ-4bit
 ```
 
 **Model Details:**
@@ -141,8 +142,9 @@ ollama serve
 
 ```env
 OPENAI_API_KEY=ollama
-OPENAI_API_URL=http://127.0.0.1:11434/v1
-MODEL_NAME=qwen3.5:27b
+OPENAI_BASE_URL=http://127.0.0.1:11434/v1
+OPENAI_SMALL_MODEL=qwen3.5:27b
+OPENAI_LARGE_MODEL=qwen3.5:27b
 ```
 
 ---
@@ -227,10 +229,10 @@ Your agent needs to be containerized and available on a public registry (Docker 
 
 ```bash
 # Build your Docker image
-docker build -t frederikbus/nosana-operator-desk:amd64 .
+docker build -t frederikbus/nosana-operator-desk:amd64-openai-v3 .
 
 # Test it locally first (recommended)
-docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:amd64
+docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:amd64-openai-v3
 
 # Visit http://localhost:3000 to verify it works
 
@@ -238,10 +240,10 @@ docker run -p 3000:3000 --env-file .env frederikbus/nosana-operator-desk:amd64
 docker login
 
 # Push to Docker Hub (make it public)
-docker push frederikbus/nosana-operator-desk:amd64
+docker push frederikbus/nosana-operator-desk:amd64-openai-v3
 ```
 
-> **Tip:** The current image name is `frederikbus/nosana-operator-desk:amd64`. Make sure that Docker Hub repository is **public** so Nosana nodes can pull it.
+> **Tip:** The current image name is `frederikbus/nosana-operator-desk:amd64-openai-v3`. Make sure that Docker Hub repository is **public** so Nosana nodes can pull it.
 
 ### Step 2: Configure Your Job Definition
 
@@ -263,8 +265,9 @@ Edit `nos_job_def/nosana_eliza_job_definition.json` and update the Docker image 
         "ports": ["3000:3000"],
         "env": {
           "OPENAI_API_KEY": "nosana",
-          "OPENAI_API_URL": "https://6vq2bcqphcansrs9b88ztxfs88oqy7etah2ugudytv2x.node.k8s.prd.nos.ci/v1",
-          "MODEL_NAME": "Qwen3.5-27B-AWQ-4bit"
+          "OPENAI_BASE_URL": "https://6vq2bcqphcansrs9b88ztxfs88oqy7etah2ugudytv2x.node.k8s.prd.nos.ci/v1",
+          "OPENAI_SMALL_MODEL": "Qwen3.5-27B-AWQ-4bit",
+          "OPENAI_LARGE_MODEL": "Qwen3.5-27B-AWQ-4bit"
         }
       }
     }

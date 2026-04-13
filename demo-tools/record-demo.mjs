@@ -12,7 +12,7 @@ const screenshotDir = path.join(outputDir, "screenshots");
 
 const APP_URL =
   process.env.APP_URL ||
-  "https://4sU1efQjdmtPRffr5yG3RNSVKhNrKqN9TR7TqXWZ2nHK.node.k8s.prd.nos.ci";
+  "https://51AXd67DY8evrGJTS8PjQnPWFd8PUpbP4y2rtEQeGpqM.node.k8s.prd.nos.ci";
 const DEMO_PROMPT =
   process.env.DEMO_PROMPT ||
   "Give me a concise morning brief for SOL, BTC, JTO, and PYTH with top priorities, open risks, and next actions.";

@@ -6,12 +6,12 @@ Operator Desk
 
 ## Project Description (300 words max)
 
-Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to run on Nosana's decentralized GPU network. The project focuses on a simple but high-value workflow: turning messy personal context into a ranked daily action board. A user gives the agent notes, watchlist items, open tasks, or research links, and Operator Desk compresses them into the top priorities, open risks, suggested next actions, and a short research summary when needed. Instead of acting like a generic chatbot, it is designed to answer the question "what matters today?" with direct, structured output. This fork customizes the official Nosana challenge starter with a project-specific character, a dedicated operator-brief action, a cleaner environment setup for the Nosana-hosted Qwen3.5 model, and a custom dashboard mockup that shows how the live experience should look beyond the default client. The goal is to make decentralized personal AI feel useful on day one: less novelty, more leverage. It is especially relevant for solo builders, researchers, and traders who need a reliable morning briefing layer that runs on infrastructure they control rather than a centralized cloud black box.
+Operator Desk is a personal AI chief-of-staff built with ElizaOS and deployed on Nosana's decentralized GPU network. The project focuses on a simple but high-value workflow: turning messy personal context into a ranked daily action board. A user gives the agent notes, watchlist items, open tasks, or research links, and Operator Desk compresses them into top priorities, open risks, suggested next actions, and short research summaries when needed. Instead of acting like a generic chatbot, it is designed to answer the question "what matters today?" with direct, structured output. This fork customizes the official Nosana challenge starter with a project-specific character, a dedicated operator-brief action, production-safe environment handling for OpenAI-compatible backends, and a custom dashboard mockup that shows how the live experience should look beyond the default client. The goal is to make decentralized personal AI feel useful on day one: less novelty, more leverage. It is especially relevant for solo builders, researchers, and traders who need a reliable morning briefing layer that runs on infrastructure they control rather than a centralized cloud black box.
 
 ## Submission Fields To Fill In
 
 - Public GitHub fork: `https://github.com/frederik-maker/nosana-operator-desk`
-- Live Nosana deployment URL: `https://4sU1efQjdmtPRffr5yG3RNSVKhNrKqN9TR7TqXWZ2nHK.node.k8s.prd.nos.ci`
+- Live Nosana deployment URL: `https://51AXd67DY8evrGJTS8PjQnPWFd8PUpbP4y2rtEQeGpqM.node.k8s.prd.nos.ci`
 - Video demo file to upload: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
 - Alternate video format: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.webm`
 - Proof screenshots folder: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/screenshots`
@@ -20,20 +20,23 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 
 ## Current Status
 
-- Docker image pushed: `frederikbus/nosana-operator-desk:amd64`
-- Latest live image digest: `sha256:35c01535c7f2dd19db6b3e7a43090ac19726a8a49aed14c2609c330afa1fc8da`
+- Docker image pushed: `frederikbus/nosana-operator-desk:amd64-openai-v3`
+- Latest live image digest: `sha256:9b3b0d5462cda89c92b19d17ddd020c669af8edf3614a550ce33ec02a2b964e7`
 - Local smoke test passed on April 1, 2026: the container stayed up and served the ElizaOS client on `http://127.0.0.1:3000`
 - Job definition fix applied on April 1, 2026: added the required top-level `"type": "container"` field to `nos_job_def/nosana_eliza_job_definition.json`
 - Architecture fix applied on April 1, 2026: published a dedicated `amd64` image tag after Nosana nodes rejected the original arm64-only image with `image not known`
+- Runtime fix applied on April 13, 2026: stopped baking `.env` into the Docker image and switched deployment variables to `OPENAI_BASE_URL` plus explicit `OPENAI_SMALL_MODEL` / `OPENAI_LARGE_MODEL`, which prevents ElizaOS from overriding live deployment credentials at startup
 - Current live deployment created on April 13, 2026:
-  - Deployment ID: `2xGxncQFPFzsjifSV9JMn4D8LodJb86HmWDVjTdCavrq`
-  - Current job ID: `EhkWZPmgBzEnAk6hgVPe7W9r9cNqW3WRvnfjMAJ9t4Z8`
-  - Endpoint URL: `https://4sU1efQjdmtPRffr5yG3RNSVKhNrKqN9TR7TqXWZ2nHK.node.k8s.prd.nos.ci`
+  - Deployment ID: `4KdQC6krCsjLjqozW4z3Nudx58rE6Ph4Uyevr2fyYA3j`
+  - Current job ID: `6qpFRqQeL88rbHwBPFLQLwDjxwr5PT2xyZoyqQVoQ8DD`
+  - Endpoint URL: `https://51AXd67DY8evrGJTS8PjQnPWFd8PUpbP4y2rtEQeGpqM.node.k8s.prd.nos.ci`
   - Current deployment status: `RUNNING`
   - Current replica count: `1`
   - Current timeout: `2880` minutes
   - Current strategy: `INFINITE`
   - Current public app shell response: `HTTP/2 200` verified on April 13, 2026
+  - Live chat response verified on April 13, 2026 using the public endpoint and prompt: "Say hello in one sentence and then give a 2-bullet market brief for SOL and BTC."
+  - Public proof screenshot: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/live-v3-chat-proof.png`
 - Honest caveat: "live indefinitely" on Nosana still depends on the account keeping enough credits and the network staying healthy. `INFINITE` is the best available deployment mode here, but it is not a literal forever guarantee independent of credits/platform uptime.
 - Demo assets generated on April 13, 2026:
   - Silent MP4: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
