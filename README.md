@@ -323,7 +323,7 @@ nosana job logs <job-id>
 
 ### Step 4B: Deploy via Nosana API Helper Script
 
-This repo now includes a repeatable API deployment script that reads your local job definition, creates a deployment on the premium 3060 market by default, starts it, and prints the latest Nosana event if startup fails.
+This repo now includes a repeatable API deployment script that reads your local job definition, creates an `INFINITE` deployment on the premium 3060 market by default, starts it, and prints the latest Nosana event if startup fails.
 
 ```bash
 export NOSANA_API_KEY=nos_your_key_here
@@ -336,13 +336,16 @@ Optional flags:
 npm run deploy:nosana -- \
   --name "Operator Desk Premium" \
   --market 7AtiXMSH6R1jjBxrcYjehCkkSF7zvYWte63gwEDBcGHq \
-  --timeout 60 \
+  --timeout 2880 \
+  --strategy INFINITE \
   --replicas 1
 ```
 
 Notes:
 - API-key deployments must use a premium market. Community markets return a job-list error.
+- The current Nosana deploy backend lives at `https://dashboard.k8s.prd.nosana.com/api`.
 - The current job definition requires a top-level `"type": "container"` field. That field is already included in `nos_job_def/nosana_eliza_job_definition.json`.
+- The `start` endpoint currently works best as a bare authenticated `POST`; sending an unnecessary JSON content-type header can trigger a backend state error.
 - If the account has no balance, Nosana returns an event like `Insufficient credits. Available: $0.000, Required: $0.048`.
 
 ### Step 5: Verify Your Deployment

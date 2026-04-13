@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 
 const API_KEY = process.env.NOSANA_API_KEY;
+const API_BASE_URL =
+  process.env.NOSANA_API_BASE_URL || "https://dashboard.k8s.prd.nosana.com/api";
 
 if (!API_KEY) {
   console.error("Missing NOSANA_API_KEY in the environment.");
@@ -13,8 +15,9 @@ const market =
   args.market ||
   process.env.NOSANA_MARKET ||
   "7AtiXMSH6R1jjBxrcYjehCkkSF7zvYWte63gwEDBcGHq";
-const timeout = Number(args.timeout || process.env.NOSANA_TIMEOUT || 60);
+const timeout = Number(args.timeout || process.env.NOSANA_TIMEOUT || 2880);
 const replicas = Number(args.replicas || process.env.NOSANA_REPLICAS || 1);
+const strategy = args.strategy || process.env.NOSANA_STRATEGY || "INFINITE";
 const jobPath =
   args.job || process.env.NOSANA_JOB_DEFINITION || "./nos_job_def/nosana_eliza_job_definition.json";
 const shouldStart = args.start !== "false";
@@ -31,7 +34,7 @@ const created = await apiFetch("/deployments/create", {
     market,
     replicas,
     timeout,
-    strategy: "SIMPLE",
+    strategy,
     job_definition: jobDefinition,
   }),
 });
@@ -97,13 +100,21 @@ function parseArgs(argv) {
 }
 
 async function apiFetch(path, init = {}) {
-  const response = await fetch(`https://dashboard.k8s.prd.nos.ci/api${path}`, {
+  const headers = {
+    Authorization: `Bearer ${API_KEY}`,
+    ...(init.headers || {}),
+  };
+
+  if (
+    init.body != null &&
+    !Object.keys(headers).some((key) => key.toLowerCase() === "content-type")
+  ) {
+    headers["Content-Type"] = "application/json";
+  }
+
+  const response = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json",
-      ...(init.headers || {}),
-    },
+    headers,
   });
 
   const text = await response.text();

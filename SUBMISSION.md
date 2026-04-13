@@ -11,8 +11,12 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 ## Submission Fields To Fill In
 
 - Public GitHub fork: `https://github.com/frederik-maker/nosana-operator-desk`
-- Live Nosana deployment URL: `https://LXzwNDzDA6vdBN1aB9D6SGn3FK3q9wi18seHwWbXBVm7.node.k8s.prd.nos.ci`
-- Video demo link: `[PASTE VIDEO URL]`
+- Live Nosana deployment URL: `https://4sU1efQjdmtPRffr5yG3RNSVKhNrKqN9TR7TqXWZ2nHK.node.k8s.prd.nos.ci`
+- Video demo file to upload: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
+- Alternate video format: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.webm`
+- Proof screenshots folder: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/screenshots`
+- Demo manifest: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/demo-manifest.json`
+- Video demo link for the form: upload the MP4 above to Loom, Google Drive, Streamable, YouTube Unlisted, or X and paste that public share URL here.
 
 ## Current Status
 
@@ -21,13 +25,21 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 - Local smoke test passed on April 1, 2026: the container stayed up and served the ElizaOS client on `http://127.0.0.1:3000`
 - Job definition fix applied on April 1, 2026: added the required top-level `"type": "container"` field to `nos_job_def/nosana_eliza_job_definition.json`
 - Architecture fix applied on April 1, 2026: published a dedicated `amd64` image tag after Nosana nodes rejected the original arm64-only image with `image not known`
-- Premium deployment now live on April 1, 2026:
-  - Deployment ID: `9T9DhDCn5sNomB82fmiu2ckKrSftxVffaivVYVn3eAKP`
-  - Job ID: `7qAzaMVbxGtMAPtbNuRE7UvcB8qN5drknajXENAgGmyR`
-  - Endpoint URL: `https://LXzwNDzDA6vdBN1aB9D6SGn3FK3q9wi18seHwWbXBVm7.node.k8s.prd.nos.ci`
+- Current live deployment created on April 13, 2026:
+  - Deployment ID: `2xGxncQFPFzsjifSV9JMn4D8LodJb86HmWDVjTdCavrq`
+  - Current job ID: `EhkWZPmgBzEnAk6hgVPe7W9r9cNqW3WRvnfjMAJ9t4Z8`
+  - Endpoint URL: `https://4sU1efQjdmtPRffr5yG3RNSVKhNrKqN9TR7TqXWZ2nHK.node.k8s.prd.nos.ci`
   - Current deployment status: `RUNNING`
-  - Current public app shell response: `HTTP/2 200`
-- Remaining human-only blockers: record the sub-60-second demo, publish the social post in `SOCIAL_POST.md`, and star the required repos before final Superteam submission
+  - Current replica count: `1`
+  - Current timeout: `2880` minutes
+  - Current strategy: `INFINITE`
+  - Current public app shell response: `HTTP/2 200` verified on April 13, 2026
+- Honest caveat: "live indefinitely" on Nosana still depends on the account keeping enough credits and the network staying healthy. `INFINITE` is the best available deployment mode here, but it is not a literal forever guarantee independent of credits/platform uptime.
+- Demo assets generated on April 13, 2026:
+  - Silent MP4: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
+  - Silent WEBM: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.webm`
+  - Screenshots: `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/screenshots`
+- Remaining human-only blockers: upload the MP4 to a public share link, publish the social post in `SOCIAL_POST.md`, star the required repos if you have not already, and submit the form.
 
 ## Required Pre-Submit Checklist
 
@@ -37,5 +49,5 @@ Operator Desk is a personal AI chief-of-staff built with ElizaOS and designed to
 - Update the Docker image reference in `nos_job_def/nosana_eliza_job_definition.json`.
 - Claim or add Nosana credits, then re-run `npm run deploy:nosana` if you need to redeploy.
 - Confirm the live endpoint still loads before recording the demo.
-- Record a sub-60-second demo.
+- Upload `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4` to a public video host and paste the share link into the submission form.
 - Publish the social post in `SOCIAL_POST.md`.

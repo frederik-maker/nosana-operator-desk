@@ -1,0 +1,16 @@
+{
+  "name": "demo-tools",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "record-demo.mjs",
+  "scripts": {
+    "record": "node record-demo.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.59.1"
+  }
+}

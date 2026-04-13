@@ -1,5 +1,13 @@
 # 60-Second Demo Script
 
+## Fastest Path
+
+- Run `cd /Users/frederikbussler/competition-submissions/nosana-operator-desk/demo-tools && npm run record`
+- Upload `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/operator-desk-demo.mp4`
+- Use the screenshots in `/Users/frederikbussler/competition-submissions/nosana-operator-desk/demo/screenshots` as the submission stills or fallback proof
+
+## Voiceover Outline
+
 0-10s
 
 - Open the Operator Desk dashboard and say: "This is Operator Desk, a personal AI chief-of-staff running on Nosana."
